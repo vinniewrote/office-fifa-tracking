@@ -3,13 +3,12 @@
 }
 
 .App-logo {
-  animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
 }
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,11 +21,54 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.submitScore {
+  display: flex;
+}
+.submitScore fieldset label,
+.submitScore fieldset input,
+.submitScore fieldset select {
+  display: block;
+}
+
+.player-table {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+.card-block {
+  margin-bottom: 100px;
+}
+.table-cell {
+  /* box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;
+  padding: 0.8em 1.2em;
+  overflow: hidden;
+  list-style: none;
+  border: solid 3px white;
+  background: rgba(112, 128, 144, 0.2); */
+}
+
+/* Table column sizing
+================================== */
+.table-2cols > .table-cell {
+  width: 50%;
+}
+.table-3cols > .table-cell {
+  width: 33.33%;
+}
+.table-4cols > .table-cell {
+  width: 25%;
+}
+.table-5cols > .table-cell {
+  width: 20%;
+}
+.table-6cols > .table-cell {
+  width: 16.6%;
+}
+.table-7cols > .table-cell {
+  width: 14.3%;
+}
+.table-8cols > .table-cell {
+  width: 12.5%;
 }
