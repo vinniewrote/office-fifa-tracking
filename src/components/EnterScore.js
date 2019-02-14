@@ -14,9 +14,8 @@ class EnterScore extends Component {
   };
 
   handleInputChange = event => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+    const { target } = event;
+    const { value, name } = target;
 
     this.setState({
       [name]: value,
@@ -26,6 +25,7 @@ class EnterScore extends Component {
   findWinner = event => {
     event.preventDefault();
     const { team1Name, team1Score, team2Name, team2Score } = this.state;
+    const { addScore, addWinner } = this.props;
     const gameKey = `game${Date.now()}`;
     if (team1Name !== team2Name) {
       const scoreCard = {
@@ -43,23 +43,23 @@ class EnterScore extends Component {
           winner: gameWinner,
         };
 
-        this.props.addWinner(winnerCard);
+        addWinner(winnerCard);
       } else if (team1Score === team2Score) {
         const gameWinner = 'Draw';
         const winnerCard = {
           game: gameKey,
           winner: gameWinner,
         };
-        this.props.addWinner(winnerCard);
+        addWinner(winnerCard);
       } else if (team1Score < team2Score) {
         const gameWinner = team2Name;
         const winnerCard = {
           game: gameKey,
           winner: gameWinner,
         };
-        this.props.addWinner(winnerCard);
+        addWinner(winnerCard);
       }
-      this.props.addScore(scoreCard);
+      addScore(scoreCard);
     }
     event.currentTarget.reset();
   };
@@ -70,47 +70,51 @@ class EnterScore extends Component {
         {team.teamName}
       </option>
     ));
-
+    const { team1Name, team1Score, team2Name, team2Score } = this.state;
     return (
       <form className="submitScore" onSubmit={this.findWinner}>
         <fieldset>
-          <label>
+          <label htmlFor="tm1Val">
             Team A
             <select
+              id="tm1Val"
               name="team1Name"
-              type="select"
-              value={this.state.team1Name}
+              value={team1Name}
               onChange={this.handleInputChange}
             >
               {teamList}
             </select>
           </label>
-          <label>
+          <label htmlFor="tm1sc">
+            Score
             <input
+              id="tm1sc"
               name="team1Score"
               type="number"
-              value={this.state.team1Score}
+              value={team1Score}
               onChange={this.handleInputChange}
             />
           </label>
         </fieldset>
         <fieldset>
-          <label>
+          <label htmlFor="tm2nm">
             Team B
             <select
+              id="tm2nm"
               name="team2Name"
-              type="select"
-              value={this.state.team2Name}
+              value={team2Name}
               onChange={this.handleInputChange}
             >
               {teamList}
             </select>
           </label>
-          <label>
+          <label htmlFor="tm2sc">
+            Score
             <input
+              id="tm2sc"
               name="team2Score"
               type="number"
-              value={this.state.team2Score}
+              value={team2Score}
               onChange={this.handleInputChange}
             />
           </label>
