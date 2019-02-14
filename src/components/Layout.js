@@ -5,14 +5,11 @@ import EnterScore from './EnterScore';
 import teams from '../data/team-manifest';
 
 class Layout extends Component {
-  constructor() {
-    super();
-    this.state = {
-      teams,
-      scores: {},
-      winners: {},
-    };
-  }
+  state = {
+    teams,
+    scores: {},
+    winners: {},
+  };
 
   addScore = score => {
     const scoreSet = { ...this.state.scores };
