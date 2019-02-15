@@ -12,15 +12,30 @@ class Layout extends Component {
   };
 
   addScore = score => {
-    const scoreSet = { ...this.state.scores };
+    const { scores } = this.state;
+    const scoreSet = { ...scores };
     scoreSet[`score${Date.now()}`] = score;
     this.setState({
       scores: scoreSet,
     });
   };
 
+  updateStandings = () => {
+    const teamSheet = {
+      ...this.state.teams,
+    };
+    console.log(teamSheet);
+    const updatedSheet = teamSheet.map(item => {
+      item.teamName = item.wins;
+
+      return updatedSheet;
+    });
+    console.log(updatedSheet);
+  };
+
   addWinner = winner => {
-    const winnerSet = { ...this.state.winners };
+    const { winners } = this.state;
+    const winnerSet = { ...winners };
     winnerSet[`winner${Date.now()}`] = winner;
     this.setState({
       winners: winnerSet,
@@ -28,13 +43,18 @@ class Layout extends Component {
   };
 
   render() {
+    const { scores } = this.state;
     return (
-      <div className="fifa-container">
+      <div className="soccerContainer">
         <Standings />
-        {Object.keys(this.state.scores).map(key => (
-          <Scorecard key={key} details={this.state.scores[key]} />
+        <EnterScore
+          addScore={this.addScore}
+          addWinner={this.addWinner}
+          updateStandings={this.updateStandings}
+        />
+        {Object.keys(scores).map(key => (
+          <Scorecard key={key} details={scores[key]} />
         ))}
-        <EnterScore addScore={this.addScore} addWinner={this.addWinner} />
       </div>
     );
   }

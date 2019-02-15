@@ -38,16 +38,6 @@
 .card-block {
   margin-bottom: 100px;
 }
-.table-cell {
-  /* box-sizing: border-box;
-  flex-grow: 1;
-  width: 100%;
-  padding: 0.8em 1.2em;
-  overflow: hidden;
-  list-style: none;
-  border: solid 3px white;
-  background: rgba(112, 128, 144, 0.2); */
-}
 
 /* Table column sizing
 ================================== */
@@ -71,4 +61,7 @@
 }
 .table-8cols > .table-cell {
   width: 12.5%;
+}
+.game-block {
+  display: flex;
 }

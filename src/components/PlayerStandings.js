@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+// addtoWinnerToState();
+// addtoLoserToState();
+// addtoDrawToState();
 class PlayerStandings extends Component {
   render() {
     return (

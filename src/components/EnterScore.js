@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 import teams from '../data/team-manifest';
 
 class EnterScore extends Component {
+  static propTypes = {
+    addScore: propTypes.func,
+    addWinner: propTypes.func,
+    updateStandings: propTypes.func,
+  };
+
   state = {
     team1Name: 'Break Windu',
     team1Score: 0,
     team2Name: 'Bro Montana',
     team2Score: 0,
-  };
-
-  handleChange = event => {
-    this.setState({ team1Score: event.target.value });
   };
 
   handleInputChange = event => {
@@ -25,30 +28,33 @@ class EnterScore extends Component {
   findWinner = event => {
     event.preventDefault();
     const { team1Name, team1Score, team2Name, team2Score } = this.state;
-    const { addScore, addWinner } = this.props;
+    const { addScore, addWinner, updateStandings } = this.props;
     const gameKey = `game${Date.now()}`;
     if (team1Name !== team2Name) {
       const scoreCard = {
         game: gameKey,
         team1Name,
-        team1Score,
+        team1Score: parseInt(team1Score),
         team2Name,
-        team2Score,
+        team2Score: parseInt(team2Score),
       };
 
       if (team1Score > team2Score) {
         const gameWinner = team1Name;
+        const gameLoser = team2Name;
         const winnerCard = {
           game: gameKey,
           winner: gameWinner,
+          loser: gameLoser,
         };
-
+        updateStandings();
         addWinner(winnerCard);
       } else if (team1Score === team2Score) {
         const gameWinner = 'Draw';
         const winnerCard = {
           game: gameKey,
           winner: gameWinner,
+          draw: [team1Name, team2Name],
         };
         addWinner(winnerCard);
       } else if (team1Score < team2Score) {
@@ -61,12 +67,11 @@ class EnterScore extends Component {
       }
       addScore(scoreCard);
     }
-    event.currentTarget.reset();
   };
 
   render() {
-    const teamList = teams.map(team => (
-      <option value={team.teamName} key={team.teamName}>
+    const teamList = teams.map((team, index) => (
+      <option value={team.teamName} key={index}>
         {team.teamName}
       </option>
     ));
