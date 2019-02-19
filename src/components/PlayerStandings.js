@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 
-// addtoWinnerToState();
-// addtoLoserToState();
-// addtoDrawToState();
 class PlayerStandings extends Component {
   render() {
+    const { draws, losses, teamName, wins } = this.props.teamInfo;
+    const teamPoints = wins * 3 + draws * 1;
     return (
-      <div className="table-8cols player-table">
-        <div className="table-cell player-name">Desus&amp;Mero</div>
-        <div className="table-cell player-win">1</div>
-        <div className="table-cell player-draw">0</div>
-        <div className="table-cell player-loss">0</div>
-        <div className="table-cell goals-for">6</div>
-        <div className="table-cell goals-against">1</div>
-        <div className="table-cell goal-diff">5</div>
-        <div className="table-cell player-points">3</div>
-      </div>
+      <React.Fragment>
+        <div className="table-cell player-name">{teamName}</div>
+        <div className="table-cell player-win">{wins}</div>
+        <div className="table-cell player-draw">{draws}</div>
+        <div className="table-cell player-loss">{losses}</div>
+        <div className="table-cell goals-for" />
+        <div className="table-cell goals-against" />
+        <div className="table-cell goal-diff" />
+        <div className="table-cell player-points">{teamPoints}</div>
+      </React.Fragment>
     );
   }
 }

@@ -20,17 +20,12 @@ class Layout extends Component {
     });
   };
 
-  updateStandings = () => {
-    const teamSheet = {
-      ...this.state.teams,
-    };
+  updateStandings = (winner, loser) => {
+    const { teams } = this.state;
+    const teamSheet = { ...teams };
     console.log(teamSheet);
-    const updatedSheet = teamSheet.map(item => {
-      item.teamName = item.wins;
-
-      return updatedSheet;
-    });
-    console.log(updatedSheet);
+    console.log(winner);
+    console.log(loser);
   };
 
   addWinner = winner => {
@@ -46,7 +41,19 @@ class Layout extends Component {
     const { scores } = this.state;
     return (
       <div className="soccerContainer">
-        <Standings />
+        <div className="table-8cols team-table">
+          <div className="table-cell team-name">Team</div>
+          <div className="table-cell player-win">W</div>
+          <div className="table-cell player-draw">D</div>
+          <div className="table-cell player-loss">L</div>
+          <div className="table-cell goals-for">GF</div>
+          <div className="table-cell goals-against">GA</div>
+          <div className="table-cell goal-diff">DIFF</div>
+          <div className="table-cell team-points">Pts</div>
+          {teams.map((team, index) => (
+            <Standings key={index} teamInfo={team} />
+          ))}
+        </div>
         <EnterScore
           addScore={this.addScore}
           addWinner={this.addWinner}

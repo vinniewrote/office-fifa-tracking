@@ -2,15 +2,15 @@ const teamManifest = [
   {
     teamName: 'Bro Montana',
     teamOwner: 'Tony Stark',
-    wins: 0,
+    wins: 2,
     losses: 0,
-    draws: 0,
+    draws: 1,
   },
   {
     teamName: 'Quantum Solace-front',
     teamOwner: 'Bob Loblaw',
     wins: 0,
-    losses: 0,
+    losses: 3,
     draws: 0,
   },
   {
@@ -18,12 +18,12 @@ const teamManifest = [
     teamOwner: 'Kerry Ramsay',
     wins: 0,
     losses: 0,
-    draws: 0,
+    draws: 3,
   },
   {
     teamName: 'Finger Slang',
     teamOwner: 'Garrett Geisendorfer',
-    wins: 0,
+    wins: 3,
     losses: 0,
     draws: 0,
   },

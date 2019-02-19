@@ -47,7 +47,7 @@ class EnterScore extends Component {
           winner: gameWinner,
           loser: gameLoser,
         };
-        updateStandings();
+        updateStandings(gameWinner, gameLoser);
         addWinner(winnerCard);
       } else if (team1Score === team2Score) {
         const gameWinner = 'Draw';
