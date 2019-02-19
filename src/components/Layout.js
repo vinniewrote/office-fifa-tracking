@@ -21,11 +21,9 @@ class Layout extends Component {
   };
 
   updateStandings = (winner, loser) => {
-    const { teams } = this.state;
     const teamSheet = { ...teams };
-    console.log(teamSheet);
-    console.log(winner);
-    console.log(loser);
+    // const result = teamSheet.filter(b => b.teamId === winner);
+    // console.log(result);
   };
 
   addWinner = winner => {
@@ -38,7 +36,7 @@ class Layout extends Component {
   };
 
   render() {
-    const { scores } = this.state;
+    const { scores, teams } = this.state;
     return (
       <div className="soccerContainer">
         <div className="table-8cols team-table">
@@ -58,6 +56,7 @@ class Layout extends Component {
           addScore={this.addScore}
           addWinner={this.addWinner}
           updateStandings={this.updateStandings}
+          teamDetails={teams}
         />
         {Object.keys(scores).map(key => (
           <Scorecard key={key} details={scores[key]} />

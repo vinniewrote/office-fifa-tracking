@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import teams from '../data/team-manifest';
 
 class EnterScore extends Component {
   static propTypes = {
@@ -10,9 +9,9 @@ class EnterScore extends Component {
   };
 
   state = {
-    team1Name: 'Break Windu',
+    team1Name: 'teamBW',
     team1Score: 0,
-    team2Name: 'Bro Montana',
+    team2Name: 'teamFS',
     team2Score: 0,
   };
 
@@ -70,8 +69,10 @@ class EnterScore extends Component {
   };
 
   render() {
-    const teamList = teams.map((team, index) => (
-      <option value={team.teamName} key={index}>
+    const { teamDetails } = this.props;
+    console.log(teamDetails);
+    const teamList = teamDetails.map((team, index) => (
+      <option key={index} teamid={team.teamName} value={team.teamId}>
         {team.teamName}
       </option>
     ));
