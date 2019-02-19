@@ -22,8 +22,8 @@ class Layout extends Component {
 
   updateStandings = (winner, loser) => {
     const teamSheet = { ...teams };
-    // const result = teamSheet.filter(b => b.teamId === winner);
-    // console.log(result);
+    const result = teamSheet.filter(b => b.teamId === winner);
+    console.log(result);
   };
 
   addWinner = winner => {
