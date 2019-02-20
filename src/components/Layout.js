@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 import Standings from './PlayerStandings';
 import Scorecard from './GameScorecard';
 import EnterScore from './EnterScore';
@@ -21,9 +22,11 @@ class Layout extends Component {
   };
 
   updateStandings = (winner, loser) => {
-    const teamSheet = { ...teams };
-    const result = teamSheet.filter(b => b.teamId === winner);
-    console.log(result);
+    const teamSheet = _.cloneDeep(teams);
+    teamSheet.find(b => b.teamId === winner).wins++;
+    this.setState({
+      teams: teamSheet,
+    });
   };
 
   addWinner = winner => {

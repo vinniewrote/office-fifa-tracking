@@ -70,7 +70,6 @@ class EnterScore extends Component {
 
   render() {
     const { teamDetails } = this.props;
-    console.log(teamDetails);
     const teamList = teamDetails.map((team, index) => (
       <option key={index} teamid={team.teamName} value={team.teamId}>
         {team.teamName}
