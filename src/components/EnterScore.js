@@ -47,7 +47,7 @@ class EnterScore extends Component {
           winner: gameWinner,
           loser: gameLoser,
         };
-        updateStandings(gameWinner);
+        updateStandings(gameWinner, gameLoser);
         // updateEls(gameLoser);
 
         addWinner(winnerCard);

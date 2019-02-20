@@ -21,9 +21,10 @@ class Layout extends Component {
     });
   };
 
-  updateStandings = winner => {
+  updateStandings = (winner, loser) => {
     const teamSheet = _.cloneDeep(teams);
     teamSheet.find(b => b.teamId === winner).wins++;
+    teamSheet.find(l => l.teamId === loser).losses++;
     this.setState({
       teams: teamSheet,
     });
