@@ -6,6 +6,7 @@ class EnterScore extends Component {
     addScore: propTypes.func,
     addWinner: propTypes.func,
     updateStandings: propTypes.func,
+    updateEls: propTypes.func,
   };
 
   state = {
@@ -27,7 +28,7 @@ class EnterScore extends Component {
   findWinner = event => {
     event.preventDefault();
     const { team1Name, team1Score, team2Name, team2Score } = this.state;
-    const { addScore, addWinner, updateStandings } = this.props;
+    const { addScore, addWinner, updateStandings, updateEls } = this.props;
     const gameKey = `game${Date.now()}`;
     if (team1Name !== team2Name) {
       const scoreCard = {
@@ -46,7 +47,9 @@ class EnterScore extends Component {
           winner: gameWinner,
           loser: gameLoser,
         };
-        updateStandings(gameWinner, gameLoser);
+        updateStandings(gameWinner);
+        // updateEls(gameLoser);
+
         addWinner(winnerCard);
       } else if (team1Score === team2Score) {
         const gameWinner = 'Draw';

@@ -21,13 +21,21 @@ class Layout extends Component {
     });
   };
 
-  updateStandings = (winner, loser) => {
+  updateStandings = winner => {
     const teamSheet = _.cloneDeep(teams);
     teamSheet.find(b => b.teamId === winner).wins++;
     this.setState({
       teams: teamSheet,
     });
   };
+
+  // updateEls = loser => {
+  //   const lossSheet = _.cloneDeep(teams);
+  //   lossSheet.find(l => l.teamId === loser).losses++;
+  //   this.setState({
+  //     teams: lossSheet,
+  //   });
+  // };
 
   addWinner = winner => {
     const { winners } = this.state;
@@ -59,6 +67,7 @@ class Layout extends Component {
           addScore={this.addScore}
           addWinner={this.addWinner}
           updateStandings={this.updateStandings}
+          updateEls={this.updateEls}
           teamDetails={teams}
         />
         {Object.keys(scores).map(key => (
