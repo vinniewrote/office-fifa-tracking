@@ -21,22 +21,31 @@ class Layout extends Component {
     });
   };
 
-  updateStandings = (winner, loser) => {
-    const teamSheet = _.cloneDeep(teams);
-    teamSheet.find(b => b.teamId === winner).wins++;
-    teamSheet.find(l => l.teamId === loser).losses++;
+  eatThoseWins = winner => {
+    const teamSheet = _.cloneDeep(this.state.teams);
+    const matchWinnerIndex = teamSheet.findIndex(b => b.teamId === winner);
+    const matchWinner = teamSheet.find(b => b.teamId === winner);
+    const winz = { ...matchWinner };
+    const newWins = (winz.wins += 1);
+    winz.wins = newWins;
+    teamSheet[matchWinnerIndex] = winz;
     this.setState({
       teams: teamSheet,
     });
   };
 
-  // updateEls = loser => {
-  //   const lossSheet = _.cloneDeep(teams);
-  //   lossSheet.find(l => l.teamId === loser).losses++;
-  //   this.setState({
-  //     teams: lossSheet,
-  //   });
-  // };
+  takeThatL = loser => {
+    const lossSheet = _.cloneDeep(this.state.teams);
+    const matchLoserIndex = lossSheet.findIndex(b => b.teamId === loser);
+    const matchLoser = lossSheet.find(b => b.teamId === loser);
+    const elz = { ...matchLoser };
+    const newElz = (elz.losses += 1);
+    elz.wins = newElz;
+    lossSheet[matchLoserIndex] = elz;
+    this.setState({
+      teams: lossSheet,
+    });
+  };
 
   addWinner = winner => {
     const { winners } = this.state;
@@ -67,8 +76,8 @@ class Layout extends Component {
         <EnterScore
           addScore={this.addScore}
           addWinner={this.addWinner}
-          updateStandings={this.updateStandings}
-          updateEls={this.updateEls}
+          eatThoseWins={this.eatThoseWins}
+          takeThatL={this.takeThatL}
           teamDetails={teams}
         />
         {Object.keys(scores).map(key => (
