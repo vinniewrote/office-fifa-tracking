@@ -6,9 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          FIFA 19 Table
-        </header>
+        <header className="App-header">The FastModel FIFA 19 Table</header>
         <Layout />
       </div>
     );
